@@ -5,18 +5,30 @@
 <table class="table table-striped table-bordered table-hover" id="movieList">
 	<thead>
 		<tr>
-			<th>Okładka</th>
+			<th width="95">Okładka</th>
 			<th>Tytuł filmu</th>
-			<th>Data premiery</th>
-			<th>Ocena</th>
+			<th width="140">Data premiery</th>
+			<th width="70">Ocena</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="movie in data.results">
-			<td width="95"><img src="{{'http://image.tmdb.org/t/p/w92'+movie.poster_path}}"/></td>
-			<td>{{ movie.title }}</td>
-			<td>{{ movie.release_date }}</td>
-			<td>{{ movie.vote_average | number:1 }}</td>
+			<td><img src="{{'http://image.tmdb.org/t/p/w92'+movie.poster_path}}"/></td>
+			<td class="tdTableMovies">
+				{{ movie.title }}<br><br>
+				<p class="genre">
+					Gatunek: 
+					<span ng-repeat="genreId in movie.genre_ids">
+						<span ng-repeat="genre in genres">
+							<span ng-if="genre.id==genreId">
+								{{genre.name}}
+							</span>
+						</span>
+					</span>
+				</p>
+			</td>
+			<td class="tdTableMovies">{{ movie.release_date }}</td>
+			<td class="tdTableMovies">{{ movie.vote_average | number:1 }}</td>
 		</tr>
 	</tbody>
 </table>

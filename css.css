@@ -1,8 +1,21 @@
 #movieList {
-	width: 600px;
+	width: 700px;
 }
 
 .h1 {
 	font-size: 2em;
 	font-weight: bold;
+}
+
+.tdTableMovies {
+	font-size: 1.7em;
+	text-align: center;
+	font-weight: bold;
+	vertical-align: middle !important;
+}
+
+.genre {
+	font-size: 0.6em;
+	font-weight: bold;
+	text-align: left;
 }
