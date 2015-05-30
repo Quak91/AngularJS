@@ -32,4 +32,6 @@
 		</tr>
 	</tbody>
 </table>
+<a class="btn btn-info" href="{{'#/page/'+(data.page - 1)}}" ng-if="data.page>1">Poprzednia strona</a>
+<a class="btn btn-info" href="{{'#/page/'+(data.page + 1)}}" ng-if="data.page<data.total_pages">Następna strona</a>
 </div>
