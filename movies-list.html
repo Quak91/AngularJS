@@ -1,15 +1,23 @@
 <!-- lista filmów -->
-<table class="table-striped">
+<h1 align="center" class="h1">Lista filmów</h1>
+<p align="center">Strona {{data.page}} z {{data.total_pages}}</p>
+<div align="center">
+<table class="table table-striped table-bordered table-hover" id="movieList">
 	<thead>
 		<tr>
+			<th>Okładka</th>
 			<th>Tytuł filmu</th>
+			<th>Data premiery</th>
 			<th>Ocena</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="movie in data.results">
+			<td width="95"><img src="{{'http://image.tmdb.org/t/p/w92'+movie.poster_path}}"/></td>
 			<td>{{ movie.title }}</td>
+			<td>{{ movie.release_date }}</td>
 			<td>{{ movie.vote_average | number:1 }}</td>
 		</tr>
 	</tbody>
 </table>
+</div>
