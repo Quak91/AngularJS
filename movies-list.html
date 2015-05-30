@@ -1,2 +1,15 @@
-<!-- tu wyświetlić listę filmów -->
-{{ movieList.results[0].title}}
+<!-- lista filmów -->
+<table class="table-striped">
+	<thead>
+		<tr>
+			<th>Tytuł filmu</th>
+			<th>Ocena</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="movie in data.results">
+			<td>{{ movie.title }}</td>
+			<td>{{ movie.vote_average | number:1 }}</td>
+		</tr>
+	</tbody>
+</table>
