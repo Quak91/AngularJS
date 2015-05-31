@@ -15,11 +15,12 @@
 		<tr ng-repeat="movie in data.results">
 			<td><img src="{{'http://image.tmdb.org/t/p/w92'+movie.poster_path}}"/></td>
 			<td class="tdTableMovies">
-				{{ movie.title }}<br><br>
+				<a href="{{ '#/view/'+data.page+'/'+movie.id }}">{{movie.title}}</a>
+				<br><br>
 				<p class="genre">
 					Gatunek: 
 					<span ng-repeat="genreId in movie.genre_ids">
-						<span ng-repeat="genre in genres">
+						<span ng-repeat="genre in genresList">
 							<span ng-if="genre.id==genreId">
 								{{genre.name}}
 							</span>

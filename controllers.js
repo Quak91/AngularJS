@@ -5,11 +5,21 @@ appControllers.controller('MoviesListController', ['$scope', '$routeParams', '$h
 	$scope.genresTmp = $http.get('http://api.themoviedb.org/3/genre/movie/list?language=pl&api_key=58aa31b7945dbe8cb06c4558a0406796');
 	$q.all([$scope.dataTmp, $scope.genresTmp]).then(function(values) {
 		$scope.data = values[0].data;
-		$scope.genres = values[1].data.genres;
+		$scope.genresList = values[1].data.genres;
 	});
 }]);
 
-appControllers.controller('MovieController', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
-	//$routeParams.id; //numer id filmu (z adresu w przeglądarce)
-	// tu trzeba pobrać dane pojedynczego filmu z id=$routeParams.id
+appControllers.controller('MovieController', ['$scope', '$routeParams', '$http', '$q', function($scope, $routeParams, $http, $q) {
+	$scope.dataPlTmp = $http.get('http://api.themoviedb.org/3/movie/'+$routeParams.id+'?api_key=58aa31b7945dbe8cb06c4558a0406796&language=pl');
+	$scope.dataEnTmp = $http.get('http://api.themoviedb.org/3/movie/'+$routeParams.id+'?api_key=58aa31b7945dbe8cb06c4558a0406796&language=en');
+	$q.all([$scope.dataPlTmp, $scope.dataEnTmp]).then(function(values) {
+		var moviePl = values[0].data;
+		var movieEn = values[1].data;
+		if(moviePl.overview != null) {
+			$scope.movie = moviePl;
+		} else {
+			$scope.movie = movieEn;
+		}
+	});
+	$scope.previousPage = $routeParams.prev;
 }]);
